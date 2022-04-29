@@ -1,0 +1,20 @@
+#!/bin/bash
+usermuladd() {
+	input=$1
+	touch name_list
+	echo $input
+	while IFS=',' read user describe
+	do
+		useradd -c "$describe" -m $user
+		echo $user:123456 >> name_list
+		echo "$user has been added."
+	done < $input
+	cat name_list
+	chpasswd < name_list
+	while IFS=':' read user passwd
+	do
+		passwd -e $user
+	done < name_list
+	rm name_list
+}
+usermuladd $1
