@@ -1,0 +1,21 @@
+# start and stop vpn
+vpn() {
+	val1=start
+	val2=stop
+	path=$(pwd)
+	if [ $1 = $val1 ]
+	then
+	
+		cd /home/wjy/clash
+		logname=$(date +%y%m%d%H%M%S)
+		nohup ./clash -d . 2> ./log/$logname.log &
+		
+		cd $path
+		echo The vpn has been started.
+
+	elif [ $1 = $val2 ]
+	then
+		pkill clash
+		echo The vpn has been stopped.
+	fi
+}
