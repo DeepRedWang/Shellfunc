@@ -9,3 +9,6 @@ add mul users at once
 
 ## webcam
 build a jupyterlab connect to camera.
+
+##vpn
+quick start vpn proxy in linux CLI
